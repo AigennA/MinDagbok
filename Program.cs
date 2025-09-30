@@ -1,10 +1,14 @@
-﻿namespace MinDagbok
+﻿using MinDagbok;
+
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
+        var diaryService = new DiaryService();
+        var fileHandler = new FileHandler("diary.json");
+        diaryService.LoadFromFile(fileHandler.LoadEntries());
+
+        var uiMenu = new UIMenu(diaryService, fileHandler);
+        uiMenu.Run();
     }
 }
